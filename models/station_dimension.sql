@@ -3,7 +3,7 @@ with bike as (
            start_station_id, 
            start_lng start_lon,
            start_lat
-      from {{ source('demo', 'bike') }} limit 10
+      from {{ source('demo', 'bike') }} 
 )
 
 select * from bike
