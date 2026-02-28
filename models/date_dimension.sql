@@ -5,17 +5,10 @@ with cte as (
  hour(to_timestamp(started_at)) hour_started_at,
  dayname(to_timestamp(started_at)) day_of_Week,
 
- case when dayname(to_timestamp(started_at)) IN ('Sat', 'Sun') 
-      then 'Weekend' 
-      else 'Businessday' End as Day_Type,
+{{day_type('started_at')}} as day_type,
 
- case when month(to_timestamp(started_at)) in(12,1,2)
-      then 'Winter'
-      when month(to_timestamp(started_at)) in(3,4,5)
-      then 'Spring'
-      when month(to_timestamp(started_at)) in(6,7,8)
-      then 'Summer'
-      Else 'Autumn' End as Season 
+{{get_season('started_at')}} as season
+
   from {{ source('demo', 'bike') }}
 )
 
