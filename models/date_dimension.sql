@@ -9,7 +9,7 @@ with cte as (
 
 {{get_season('started_at')}} as season
 
-  from {{ source('demo', 'bike') }}
+  from {{ ref('stage_bike') }}
 )
 
 select * 
